@@ -15,16 +15,19 @@ def index(request):
     return render(request, 'chat/index.html', {'name': request.user, 'messages': chatMessages})
 
 def loginView(request):
+    redirect = request.GET.get('next')
+    if redirect == None:
+        redirect = '/chat/'
     if request.method == 'POST':
         #print("recieved data: " + request.POST['textmessage'])
+        
         user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
         print(user)
         if user is not None:
-            
             login(request, user)
-            return HttpResponseRedirect('/chat/')
+            return HttpResponseRedirect(request.POST.get('redirect'))
         else:
             print(user)
             return render(request, 'auth/login.html', {'wrong_password': True})
         #return HttpResponseRedirect('/chat/')
-    return render(request, 'auth/login.html')
+    return render(request, 'auth/login.html', {'redirect' : redirect})
