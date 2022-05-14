@@ -1,0 +1,27 @@
+.content_page {
+    padding: 100px;
+}
+
+.content_page form {
+    display: flex;
+    flex-direction: column;
+}
+
+.content_page form button {
+    width: 150px;
+}
+
+.mdl-layout {
+    align-items: center;
+    justify-content: center;
+}
+
+.mdl-layout__content {
+    padding: 24px;
+    flex: none;
+}
+
+.mdl-layout__container {
+    min-height: 100vh;
+    height: auto;
+}
